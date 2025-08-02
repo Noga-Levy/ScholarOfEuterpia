@@ -7,8 +7,8 @@ import streamlit as st
 def welcome():
     st.markdown("<h1 style='text-align: center;'>Welcome, Scholar!</h1>", unsafe_allow_html=True)
 
-    st.markdown("<h2 style='text-align: center;'>The world of Euterpia has been plunged into darkness--can you "
-                "save it?</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>The world of Euterpia was plunged into darkness--can you "
+                "restore it?</h2>", unsafe_allow_html=True)
 
     st.markdown("<h4 style='text-align: center;'>A long, long time ago, Euterpia was a blissful land of song and "
                 "dance... but that was before the darkness arrived</h4>", unsafe_allow_html=True)
