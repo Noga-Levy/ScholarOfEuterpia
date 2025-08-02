@@ -9,7 +9,13 @@ def increment_sess_state():
     st.session_state.count += 1
 
 
-button = st.button("Let's go!", on_click=increment_sess_state())
+def centered_button(text: str):
+    st.markdown("----", unsafe_allow_html=True)
+    columns = st.columns((2, 1, 2))
+    columns[1].button(text)
+    st.markdown("----", unsafe_allow_html=True)
 
-if st.session_state.count == 1:
+
+if st.session_state.count == 0:
     welcome()
+    centered_button("Let's go!")
