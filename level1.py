@@ -4,13 +4,22 @@ LEVEL 1
 The Taxi
 """
 import random
+
 import streamlit as st
 from type_writer_func import type_writer
+from gemini_question_generator import easy_question
 import time
 
 st.markdown("<h1 style='text-align: center;'>Level 1</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center;'>The C A B</h2>", unsafe_allow_html=True)
 
+if "question" not in st.session_state:
+    question, answer = easy_question()[:-1].split("{")
+    st.session_state.question = [easy_question() for i in range(0)]
+    st.session_state.questionV1, st.session_state.answerV1 = easy_question()[:-1].split("{")
+    st.session_state.answerV1 = st.session_state.answerV1[:-1]
+
+st.title(f"Answer: {st.session_state.answerV1}")
 
 cutscene1 = [
     {"content": "To the docks, please", "role": "You", "avatar": "the_Scholar.png"},
@@ -35,7 +44,7 @@ cutscene1 = [
 
     {"content": "Hmf. You've got your self a deal!", "role": "Taxi Man", "avatar": "taxi_man.png"},
 
-    {"content": "*Question 1:*", "role": "Taxi Man", "avatar": "taxi_man.png"}
+    {"content": f"*Question 1:* {st.session_state.questionV1}", "role": "Taxi Man", "avatar": "taxi_man.png"}
 ]
 
 
@@ -58,12 +67,13 @@ if "pending_save" not in st.session_state:
     st.session_state.pending_save = []
 
 
-response = st.chat_input("The answer is....")
+response = st.chat_input("Answer in the form of \"Answer: letter\"...")
 if response:
     with st.chat_message("You", avatar="the_Scholar.png"):
         st.write(f"{response}")
 
     st.session_state.messages.append({"content": response, "role": "You", "avatar": "the_Scholar.png"})
+
 
 if {"content": response, "role": "You", "avatar": "the_Scholar.png"} in st.session_state.messages:
 
@@ -81,7 +91,10 @@ if {"content": response, "role": "You", "avatar": "the_Scholar.png"} in st.sessi
 
     time.sleep(random.uniform(0.05, 0.30))
 
-    answer_response = random.choice(correct_response + incorrect_response)
+    if response == st.session_state.answerV1:
+        answer_response = random.choice(correct_response)
+    else:
+        answer_response = random.choice(incorrect_response)
 
     st.session_state.pending_save.append({"content": answer_response, "role": "Taxi Man", "avatar": "taxi_man.png"})
 
