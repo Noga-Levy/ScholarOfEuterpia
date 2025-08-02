@@ -4,6 +4,7 @@ Entry page to the game
 
 import streamlit as st
 
+
 def welcome():
     st.markdown("<h1 style='text-align: center;'>Welcome, Scholar!</h1>", unsafe_allow_html=True)
 
