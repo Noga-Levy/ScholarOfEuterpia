@@ -75,7 +75,7 @@ if {"content": response, "role": "You", "avatar": "the_Scholar.png"} in st.sessi
     incorrect_response = ["Humph. That's incorrect, Mr. Scholar. You'd think that a Scholar would know his stuff...",
                           "You may want to work on your brawn, since your brain don't seem to be working. That isn't "
                           "the correct answer.",
-                          "All those fancy institutes couldn't teach... *sign*. I guess we all have off days, "
+                          "All those fancy institutes couldn't teach... *sigh*. I guess we all have off days, "
                           "Mr. Scholar. You got it wrong.",
                           "Maybe review your notebooks, 'cause that ain't the right answer."]
 
