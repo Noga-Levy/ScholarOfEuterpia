@@ -16,8 +16,18 @@ client = genai.Client()
 def easy_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
-        contents="Create an easy multiple choice trivia question based on the fundamentals from music theory. It should"
-                 " be in the format of [Question] (a) Option (b) Option (c) Option (d) Option  {Answer: Ans}",
+        contents="You are a trivia question generator. Your task is to create a music theory question and format it"
+                 "strictly as follows: [Question] (a) Option (b) Option (c) Option (d) None of the options "
+                 "{Answer: Ans}. Here are a few examples:"
+                 "1. [What is a triad?] (a) Three-note chord (b) A type of rhythm (c) A musical scale "
+                 "(d) None of the options {Answer: a}"
+                 "2. [What does a sharp symbol (#) do to a note?] (a) Lowers it by a half step "
+                 "(b) Raises it by a whole step (c) Raises it by a half step (d) None of the options {Answer: c}"
+                 "3. [Which note is the dominant in the key of C Major?] (a) C (b) G (c) F (d) None of the options "
+                 "{Answer: b}."
+                 "Generate a new question based on a topic not covered in the examples above,"
+                 " and not about stacking or intervals between C.",
+
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
@@ -28,8 +38,8 @@ def interval_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
         contents="Create an intermediate multiple choice trivia question based on semi-difficult subjects from music "
-                 "theory. It should be in the format of [Question] (a) Option  (b) Option (c) Option (d)Option {Answer:"
-                 " Ans}",
+                 "theory. It should be in the format of [Question] (a) Option  (b) Option (c) Option (d) Option "
+                 "(e) None of the options {Answer: Ans}",
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
@@ -40,8 +50,8 @@ def hard_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
         contents="Create an painfully hard multiple choice trivia question based on anything from music theory. "
-                 "It should be in the format of [Question] (a) Option  (b) Option  (c) Option  (d)Option "
-                 " {Answer: Ans}",
+                 "It should be in the format of [Question] (a) Option  (b) Option  (c) Option  (d) Option (e) Option"
+                 " (f) None of the options {Answer: Ans}",
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 

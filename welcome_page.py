@@ -23,7 +23,7 @@ def welcome():
                 "and defeated it. They called themselves the Scholars.</h4>", unsafe_allow_html=True)
 
     st.markdown("<h4 style='text-align: center;'>And, a millennium later, Euterpia has been restored to its former"
-                "glory</h4>", unsafe_allow_html=True)
+                " glory</h4>", unsafe_allow_html=True)
 
     st.markdown("<h4 style='text-align: center;'> </h4>", unsafe_allow_html=True)
 
