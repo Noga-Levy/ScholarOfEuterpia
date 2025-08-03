@@ -7,6 +7,7 @@ import random
 
 import streamlit as st
 from type_writer_func import type_writer
+from type_writer_func import narator
 from gemini_question_generator import easy_question
 import time
 
@@ -37,25 +38,45 @@ def level_1():
         {"content": ".    ", "role": "Taxi Man", "avatar": "taxi_man.png"},
         {"content": ".    ", "role": "Taxi Man", "avatar": "taxi_man.png"},
 
-        {"content": "Wait a minute... are YOU the Scholar everyone's been makin' a fuss about?", "role": "Taxi Man",
-         "avatar": "taxi_man.png"},
-
-        {"content": "Er... Probably? I'm on a quest to retrieve the final piece the darkness destroyed",
-         "role": "You", "avatar": "the_Scholar.png"},
-
-        {"content": "Huh. I'll be honest, I'm not impressed. You don't LOOK like a butt-kickin' Scholar.",
+        {"content": "Wait a minute... are YOU the hot-shot Scholar everyone's been makin' a fuss about?",
          "role": "Taxi Man", "avatar": "taxi_man.png"},
 
-        {"content": "Well... we have a while till we arrive. How about this: ask me some questions about music theory and "
-                    "let's see how many I get right.", "role": "You", "avatar": "the_Scholar.png"},
+        {"content": "Er... not how I'd put it, but most likely, yes. I'm on a quest to retrieve the final--",
+         "role": "You", "avatar": "the_Scholar.png"},
 
-        {"content": "Hmf. You've got your self a deal!", "role": "Taxi Man", "avatar": "taxi_man.png"}
+        {"content": "Yeah, yeah, everybody's heard the story. Tell me, do you even know what you're looking for?",
+         "role": "Taxi Man", "avatar": "taxi_man.png"},
+
+        {"content": "... No", "role": "You", "avatar": "the_Scholar.png"},
+
+        {"content": "Ha! 'No'? I'll be honest, I'm not impressed. You don't LOOK like a butt-kickin' Scholar. And it "
+                    "don't seem like you have the brains to make up for it.", "role": "Taxi Man",
+         "avatar": "taxi_man.png"},
+
+        {"content": "Well, it's not that simple--", "role": "You", "avatar": "the_Scholar.png"},
+
+        {"content": "Hmf.", "role": "Taxi Man", "avatar": "taxi_man.png"},
+
+        {"content": "...", "role": "You", "avatar": "the_Scholar.png"},
+
+        {"content": "...", "role": "Taxi Man", "avatar": "taxi_man.png"},
+
+        {"content": "How about this: Since we have a while till we arrive--and definitely not because I *hate* awkward"
+                    " silences--ask me some questions about music theory and let's see how many I get right. Would that"
+                    "prove my capabilities, or, as you eloquently put it, 'brains'?",
+         "role": "You", "avatar": "the_Scholar.png"},
+
+        {"content": "Ha!  You've got your self a deal hot-shot! But, fair warning: I ain't goin' easy on you.",
+         "role": "Taxi Man", "avatar": "taxi_man.png"}
     ]
 
 
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
+        narator("*You find yourself on the dusty street, carriages going to and fro, and the distinct 'clip-clop' from "
+                "the horses loud in your ears. With a melodic shout, you beckon a carriage. It's playing jazzy tune "
+                "that is ever so off. Gracefully, you pull open the door and step in...*")
         for i in range(len(cutscene1)):
             type_writer(cutscene1[i]["content"], cutscene1[i]["role"], cutscene1[i]["avatar"])
             st.session_state.messages.append({"content": cutscene1[i]["content"],
