@@ -26,6 +26,6 @@ if st.session_state.count == 0:
     centered_button("Let's go!")
 
 if st.session_state.count == 1:
-    done = level_1()
-    if done:
+    successful_playthrough = level_1()
+    if successful_playthrough:
         centered_button("Level 2 ~ The docks")
