@@ -3,6 +3,7 @@ from welcome_page import welcome
 from level1 import level_1
 from level2 import level_2
 from level3 import level_3
+from type_writer_func import type_writer
 
 if 'count' not in st.session_state:
     st.session_state.count = 0
@@ -49,4 +50,14 @@ if st.session_state.count == 2:
 if st.session_state.count == 3:
     successful_lvl3 = level_3()
     if successful_lvl3:
-        centered_button("Level 3 ~ The Goblin")
+        centered_button("The missing piece")
+
+if st.session_state.count == 4:
+    type_writer("It's the final piece! It's... it's--", "You", "the_scholar.png")
+    st.markdown("<h1 style='text-align: center;'>CONGRATULATIONS</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>You've completed the game, and Euterpia will be restored!</h1>",
+                unsafe_allow_html=True)
+
+    st.markdown("<h3 style='text-align: center;'>~ENDING 4~</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>===> WINNER WINNER, MUSIC DINNER <===</h3>", unsafe_allow_html=True)
+    st.markdown("<h5 style='text-align: center;'>Share this game with your friends!</h5>", unsafe_allow_html=True)
