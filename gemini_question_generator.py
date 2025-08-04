@@ -1,4 +1,5 @@
 import google.generativeai
+import streamlit as st
 
 # Get API key from environment variable
 apiKey = st.secrets["GEMINI_API_KEY"]
