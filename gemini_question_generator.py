@@ -1,5 +1,4 @@
-from google import genai
-from google.genai import types
+import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 
@@ -9,13 +8,14 @@ load_dotenv(dotenv_path=".env")
 # Get API key from environment variable
 apiKey = os.getenv("GEMINI_API_KEY")
 
-# Initialize Gemini client
-client = genai.Client()
+# Configure the genai library with your API key
+genai.configure(api_key=apiKey)
 
 
 def easy_question():
-    question = client.models.generate_content(
-        model="gemini-1.5-flash",
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+
+    question = model.generate_content(
         contents="You are an easy trivia question generator. Your task is to create a music theory question and format"
                  "it strictly as follows: [Question] (a) Option (b) Option (c) Option (d) None of the options "
                  "{Answer: Ans}. Here are a few examples:"
@@ -27,16 +27,14 @@ def easy_question():
                  "{Answer: b}."
                  "Generate a new question based on a topic not covered in the examples above,"
                  " and not about stacking, intervals between C, whole notes, dotted half notes, or 2 beats.",
-
-        config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
     return question.text
 
 
 def intermediate_question():
-    question = client.models.generate_content(
-        model="gemini-1.5-flash",
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    question = model.generate_content(
         contents="You are an trivia question generator that makes hard questions. Your task is to create a music theory"
                  " question and format it strictly as follows: "
                  "[Question] (a) Option (b) Option (c) Option (d) None of the options {Answer: Ans}."
@@ -49,15 +47,14 @@ def intermediate_question():
                  "{Answer: b}."
                  "Generate a new question based on a topic not covered in the examples above, and make sure the answer "
                  "is correct",
-        config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
     return question.text
 
 
 def hard_question():
-    question = client.models.generate_content(
-        model="gemini-1.5-flash",
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    question = model.generate_content(
         contents="You are an painfully hard multiple choice trivia question generator. Your task is to create a music "
                  "theory questions and format it strictly as follows: "
                  "[Question] (a) Option (b) Option (c) Option (d) None of the options {Answer: Ans}."
@@ -69,7 +66,6 @@ def hard_question():
                  "3. [Which note is the dominant in the key of C Major?] (a) C (b) G (c) F (d) None of the options "
                  "{Answer: b}."
                  "Generate a new insanely hard question based on a topic not covered in the examples above.",
-        config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
     return question.text

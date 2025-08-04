@@ -8,7 +8,7 @@ import random
 import streamlit as st
 from type_writer_func import type_writer
 from type_writer_func import narator
-from gemini_question_generator import intermediate_question
+from gemini_question_generator import hard_question
 import time
 
 
@@ -18,7 +18,7 @@ def level_3():
     st.markdown("<h2 style='text-align: center;'>The Goblin</h2>", unsafe_allow_html=True)
 
     if "full_question" not in st.session_state:
-        st.session_state.full_question = [intermediate_question() for i in range(3)]
+        st.session_state.full_question = [hard_question() for i in range(3)]
         st.session_state.question_counter = 0
         st.session_state.num_correct = 0
         st.session_state.q_number = 0
