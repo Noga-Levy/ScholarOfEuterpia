@@ -2,6 +2,7 @@ import streamlit as st
 from welcome_page import welcome
 from level1 import level_1
 from level2 import level_2
+from level3 import level_3
 
 if 'count' not in st.session_state:
     st.session_state.count = 0
@@ -43,4 +44,9 @@ if st.session_state.count == 1:
 if st.session_state.count == 2:
     successful_lvl2 = level_2()
     if successful_lvl2:
+        centered_button("Level 3 ~ The Goblin")
+
+if st.session_state.count == 3:
+    successful_lvl3 = level_3()
+    if successful_lvl3:
         centered_button("Level 3 ~ The Goblin")
