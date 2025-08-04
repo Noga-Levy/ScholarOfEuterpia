@@ -1,4 +1,4 @@
-import google.generativeai as genai
+import google.generativeai
 from dotenv import load_dotenv
 import os
 
@@ -9,11 +9,11 @@ load_dotenv(dotenv_path=".env")
 apiKey = os.getenv("GEMINI_API_KEY")
 
 # Configure the genai library with your API key
-genai.configure(api_key=apiKey)
+google.generativeai.configure(api_key=apiKey)
 
 
 def easy_question():
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    model = google.generativeai.GenerativeModel(model_name="gemini-1.5-flash")
 
     question = model.generate_content(
         contents="You are an easy trivia question generator. Your task is to create a music theory question and format"
@@ -33,7 +33,7 @@ def easy_question():
 
 
 def intermediate_question():
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    model = google.generativeai.GenerativeModel(model_name="gemini-1.5-flash")
     question = model.generate_content(
         contents="You are an trivia question generator that makes hard questions. Your task is to create a music theory"
                  " question and format it strictly as follows: "
@@ -53,7 +53,7 @@ def intermediate_question():
 
 
 def hard_question():
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    model = google.generativeai.GenerativeModel(model_name="gemini-1.5-flash")
     question = model.generate_content(
         contents="You are an painfully hard multiple choice trivia question generator. Your task is to create a music "
                  "theory questions and format it strictly as follows: "
