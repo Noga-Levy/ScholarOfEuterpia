@@ -63,7 +63,7 @@ def level_1():
 
         {"content": "How about this: Since we have a while till we arrive--and definitely not because I *hate* awkward"
                     " silences--ask me some questions about music theory and let's see how many I get right. Would that"
-                    "prove my capabilities, or, as you eloquently put it, 'brains'?",
+                    " prove my capabilities, or, as you eloquently put it, 'brains'?",
          "role": "You", "avatar": "the_Scholar.png"},
 
         {"content": "Ha!  You've got your self a deal hot-shot! But, fair warning: I ain't goin' easy on you.",
@@ -74,7 +74,7 @@ def level_1():
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
-        narator("*You find yourself on the dusty street, carriages going to and fro, and the distinct 'clip-clop' from "
+        narator("*You find yourself at a dusty street, carriages going to and fro, and the distinct 'clip-clop' from "
                 "the horses loud in your ears. With a melodic shout, you beckon a carriage. It's playing jazzy tune "
                 "that is ever so off. Gracefully, you pull open the door and step in...*")
         for i in range(len(cutscene1)):
@@ -95,21 +95,22 @@ def level_1():
     def responding_to_q(i):
         if not st.session_state.question_displayed:
             question_and_answer(i)
-            type_writer(f"*Question {i + 1}:* {st.session_state.questionV2}", "Taxi Man", "taxi_man.png")
+            type_writer(f"*Question {i + 1}:* {st.session_state.questionV2}", "Taxi Man",
+                        "taxi_man.png")
             st.session_state.question_displayed = True
 
             st.session_state.messages.append({"content": f"*Question {i + 1}:* {st.session_state.questionV2}",
                                               "role": "Taxi Man", "avatar": "taxi_man.png"})
 
         response = st.chat_input("Answer in the form of \"Answer: x\" (for example, \"Answer: b\" is valid)",
-                                 key=f"question-{st.session_state.q_number}")
+                                 key=f"level1-{st.session_state.q_number}")
 
         if response:
             with st.chat_message("You", avatar="the_Scholar.png"):
                 st.write(f"Success: {response}")
             st.session_state.messages.append({"content": response, "role": "You", "avatar": "the_Scholar.png"})
 
-            correct_response = ["*checks notes* Well, you're smarter than you look. That's num_correct!",
+            correct_response = ["*checks notes* Well, you're smarter than you look. That's correct!",
                                 "Oh. Well done, Mr. Scholar--you got it right.",
                                 "**OI! YOU, IN THE GREEN SHIRT! DID HE GET IT RIGHT?! YES?** Good job.",
                                 "Correct! Maybe your brains will make up for your lacking brawn."]
@@ -117,7 +118,7 @@ def level_1():
             incorrect_response = ["Humph. That's incorrect, Mr. Scholar. You'd think that a Scholar would know his "
                                   "stuff...",
                                   "You may want to work on your brawn, since your brain don't seem to be working. That "
-                                  "isn't the num_correct answer.",
+                                  "isn't the correct answer.",
                                   "All those fancy institutes couldn't teach... *sigh*. I guess we all have off days, "
                                   "Mr. Scholar. You got it wrong.",
                                   "Maybe review your notebooks, 'cause that ain't the right answer."]
@@ -149,7 +150,7 @@ def level_1():
     if st.session_state.q_number < 4:
         responding_to_q(st.session_state.q_number)
 
-    elif (st.session_state.num_correct/4) <= 0.5:
+    elif (st.session_state.num_correct/4) < 0.5:
         type_writer("Well, Mr. Scholar, we're here. But, I don't think you're that hot-shot everybody's talking about.",
                     "Taxi Man", "taxi_man.png")
         type_writer("I THINK YOU'RE AN IMPOSTER!!", "Taxi Man", "taxi_man.png")
@@ -163,7 +164,7 @@ def level_1():
                                           "avatar": "taxi_man.png"})
 
         st.markdown("<h3 style='text-align: center;'>~ENDING 1~</h3>", unsafe_allow_html=True)
-        st.markdown("<h3 style='text-align: center;'>===> Imposter<====</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: center;'>===> Imposter <===</h3>", unsafe_allow_html=True)
         st.markdown("<h5 style='text-align: center;'>Better luck next time...</h5>", unsafe_allow_html=True)
 
         return False

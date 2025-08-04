@@ -16,8 +16,8 @@ client = genai.Client()
 def easy_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
-        contents="You are a trivia question generator. Your task is to create a music theory question and format it"
-                 "strictly as follows: [Question] (a) Option (b) Option (c) Option (d) None of the options "
+        contents="You are an easy trivia question generator. Your task is to create a music theory question and format"
+                 "it strictly as follows: [Question] (a) Option (b) Option (c) Option (d) None of the options "
                  "{Answer: Ans}. Here are a few examples:"
                  "1. [What is a triad?] (a) Three-note chord (b) A type of rhythm (c) A musical scale "
                  "(d) None of the options {Answer: a}"
@@ -26,7 +26,7 @@ def easy_question():
                  "3. [Which note is the dominant in the key of C Major?] (a) C (b) G (c) F (d) None of the options "
                  "{Answer: b}."
                  "Generate a new question based on a topic not covered in the examples above,"
-                 " and not about stacking or intervals between C.",
+                 " and not about stacking, intervals between C, whole notes, dotted half notes, or 2 beats.",
 
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
@@ -34,12 +34,21 @@ def easy_question():
     return question.text
 
 
-def interval_question():
+def intermediate_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
-        contents="Create an intermediate multiple choice trivia question based on semi-difficult subjects from music "
-                 "theory. It should be in the format of [Question] (a) Option  (b) Option (c) Option (d) Option "
-                 "(e) None of the options {Answer: Ans}",
+        contents="You are an trivia question generator that makes hard questions. Your task is to create a music theory"
+                 " question and format it strictly as follows: "
+                 "[Question] (a) Option (b) Option (c) Option (d) None of the options {Answer: Ans}."
+                 "Here are a few examples:"
+                 "1. [What is a triad?] (a) Three-note chord (b) A type of rhythm (c) A musical scale "
+                 "(d) None of the options {Answer: a}"
+                 "2. [What does a sharp symbol (#) do to a note?] (a) Lowers it by a half step "
+                 "(b) Raises it by a whole step (c) Raises it by a half step (d) None of the options {Answer: c}"
+                 "3. [Which note is the dominant in the key of C Major?] (a) C (b) G (c) F (d) None of the options "
+                 "{Answer: b}."
+                 "Generate a new question based on a topic not covered in the examples above, and make sure the answer "
+                 "is correct",
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
@@ -49,9 +58,17 @@ def interval_question():
 def hard_question():
     question = client.models.generate_content(
         model="gemini-1.5-flash",
-        contents="Create an painfully hard multiple choice trivia question based on anything from music theory. "
-                 "It should be in the format of [Question] (a) Option  (b) Option  (c) Option  (d) Option (e) Option"
-                 " (f) None of the options {Answer: Ans}",
+        contents="You are an painfully hard multiple choice trivia question generator. Your task is to create a music "
+                 "theory questions and format it strictly as follows: "
+                 "[Question] (a) Option (b) Option (c) Option (d) None of the options {Answer: Ans}."
+                 "Here are a few examples:"
+                 "1. [What is a triad?] (a) Three-note chord (b) A type of rhythm (c) A musical scale "
+                 "(d) None of the options {Answer: a}"
+                 "2. [What does a sharp symbol (#) do to a note?] (a) Lowers it by a half step "
+                 "(b) Raises it by a whole step (c) Raises it by a half step (d) None of the options {Answer: c}"
+                 "3. [Which note is the dominant in the key of C Major?] (a) C (b) G (c) F (d) None of the options "
+                 "{Answer: b}."
+                 "Generate a new insanely hard question based on a topic not covered in the examples above.",
         config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))  # Disables thinking
     )
 
